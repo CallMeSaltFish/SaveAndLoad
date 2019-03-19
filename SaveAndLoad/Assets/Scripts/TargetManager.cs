@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class TargetManager : MonoBehaviour
 {
-    public static TargetManager _instance;
-
     public GameObject[] monsters;
     public GameObject activeMonster = null;
+    public int targetPosition;
 
     private float timer = 0;
-
-    private void Awake()
-    {
-        _instance = this;
-    }
 
     private void Start()
     {
@@ -70,10 +64,25 @@ public class TargetManager : MonoBehaviour
         StopAllCoroutines();
         if (activeMonster != null)
         {
+            activeMonster.GetComponent<BoxCollider>().enabled = false;
             activeMonster.SetActive(false);
             activeMonster = null;
         }
         StartCoroutine("AliveTimer");
     }
 
+    public void ActivateMonsterByType(int type)
+    {
+        StopAllCoroutines();
+        if (activeMonster != null)
+        {
+            activeMonster.GetComponent<BoxCollider>().enabled = false;
+            activeMonster.SetActive(false);
+            activeMonster = null;
+        }
+        activeMonster = monsters[type];
+        activeMonster.SetActive(true);
+        activeMonster.GetComponent<BoxCollider>().enabled = true;
+        StartCoroutine("DeathTimer");
+    }
 }

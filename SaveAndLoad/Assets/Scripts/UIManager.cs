@@ -9,39 +9,56 @@ public class UIManager : MonoBehaviour
 
     public Text shootNumText;
     public Text scoreText;
-
+    public Text messageText;
     public int shootNum = 0;
     public int score = 0;
 
     public Toggle musicToggle;
     public AudioSource musicAudio;
 
-    private bool musicOn = true;
-
     private void Awake()
     {
         _instance = this;
+        if(PlayerPrefs.HasKey("MusicOn"))
+        {
+            if(PlayerPrefs.GetInt("MusicOn") == 1)
+            {
+                musicToggle.isOn = true;
+                musicAudio.enabled = true;
+            }
+            else
+            {
+                musicToggle.isOn = false;
+                musicAudio.enabled = false;
+            }
+        }
+        else
+        {
+            musicToggle.isOn = true;
+            musicAudio.enabled = true;
+        }
     }
 
     private void Update()
     {
         shootNumText.text = shootNum.ToString();
         scoreText.text = score.ToString();
-        MusicSwitch();
     }
 
-    private void MusicSwitch()
+    public void MusicSwitch()
     {
         if(musicToggle.isOn == false)
         {
-            musicOn = false;
             musicAudio.enabled = false;
+            PlayerPrefs.SetInt("MusicOn", 0);
         }
         else
         {
-            musicOn = true;
             musicAudio.enabled = true;
+            PlayerPrefs.SetInt("MusicOn", 1);
         }
+        /**/
+        PlayerPrefs.Save();
     }
 
     public void AddShootNum()
@@ -52,5 +69,10 @@ public class UIManager : MonoBehaviour
     public void AddScore()
     {
         score++;
+    }
+
+    public void showMessage(string str)
+    {
+        messageText.text = str;
     }
 }

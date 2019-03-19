@@ -551,6 +551,7 @@ MonoBehaviour:
   - {fileID: 1949861987}
   - {fileID: 172641254}
   activeMonster: {fileID: 0}
+  targetPosition: 0
 --- !u!1001 &119042519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -723,6 +724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: e607f74860c67814e93c914b710142d5, type: 3}
   dieClip: {fileID: 7400006, guid: e607f74860c67814e93c914b710142d5, type: 3}
+  monsterType: 3
 --- !u!111 &145806546
 Animation:
   m_ObjectHideFlags: 0
@@ -779,6 +781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
   dieClip: {fileID: 7400008, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
+  monsterType: 2
 --- !u!65 &156751798
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1007,6 +1010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: e607f74860c67814e93c914b710142d5, type: 3}
   dieClip: {fileID: 7400006, guid: e607f74860c67814e93c914b710142d5, type: 3}
+  monsterType: 3
 --- !u!1001 &191095526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1932,7 +1936,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u52A0\u8F7D\u6E38\u620F"
+  m_Text: "\u9000\u51FA\u6E38\u620F"
 --- !u!222 &266113865
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2100,6 +2104,7 @@ MonoBehaviour:
   - {fileID: 156751795}
   - {fileID: 913497906}
   activeMonster: {fileID: 0}
+  targetPosition: 2
 --- !u!33 &280542429
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2261,7 +2266,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 347059779}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1251090139}
+        m_MethodName: SaveGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &347059779
@@ -2355,6 +2371,7 @@ MonoBehaviour:
   - {fileID: 1532040572}
   - {fileID: 1028932115}
   activeMonster: {fileID: 0}
+  targetPosition: 8
 --- !u!33 &371846232
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2464,6 +2481,102 @@ MonoBehaviour:
     type: 3}
   firePosition: {fileID: 278982870}
   force: 1800
+--- !u!82 &462118059
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462118055}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &464529835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2981,6 +3094,7 @@ MonoBehaviour:
   - {fileID: 780166873}
   - {fileID: 1424616000}
   activeMonster: {fileID: 0}
+  targetPosition: 7
 --- !u!33 &564139017
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3069,10 +3183,21 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1279982001}
+        m_MethodName: MusicSwitch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &591256521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3190,6 +3315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
   dieClip: {fileID: 7400008, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
+  monsterType: 1
 --- !u!65 &597282828
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3422,6 +3548,7 @@ MonoBehaviour:
   - {fileID: 1317973995}
   - {fileID: 762484933}
   activeMonster: {fileID: 0}
+  targetPosition: 5
 --- !u!33 &678989219
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3638,6 +3765,7 @@ MonoBehaviour:
   - {fileID: 763490045}
   - {fileID: 2002136769}
   activeMonster: {fileID: 0}
+  targetPosition: 6
 --- !u!33 &728366054
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3741,6 +3869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
   dieClip: {fileID: 7400008, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
+  monsterType: 0
 --- !u!111 &744557630
 Animation:
   m_ObjectHideFlags: 0
@@ -3797,6 +3926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: e607f74860c67814e93c914b710142d5, type: 3}
   dieClip: {fileID: 7400006, guid: e607f74860c67814e93c914b710142d5, type: 3}
+  monsterType: 3
 --- !u!111 &762484936
 Animation:
   m_ObjectHideFlags: 0
@@ -3853,6 +3983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
   dieClip: {fileID: 7400008, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
+  monsterType: 2
 --- !u!65 &763490048
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3909,6 +4040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
   dieClip: {fileID: 7400008, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
+  monsterType: 2
 --- !u!65 &780166876
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4109,6 +4241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
   dieClip: {fileID: 7400008, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
+  monsterType: 2
 --- !u!65 &814406622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4268,6 +4401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
   dieClip: {fileID: 7400008, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
+  monsterType: 0
 --- !u!1 &857667569
 GameObject:
   m_ObjectHideFlags: 0
@@ -4459,6 +4593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: e607f74860c67814e93c914b710142d5, type: 3}
   dieClip: {fileID: 7400006, guid: e607f74860c67814e93c914b710142d5, type: 3}
+  monsterType: 3
 --- !u!111 &913497909
 Animation:
   m_ObjectHideFlags: 0
@@ -4957,6 +5092,7 @@ RectTransform:
   - {fileID: 1192809981}
   - {fileID: 1698859244}
   - {fileID: 564399676}
+  - {fileID: 2112617459}
   m_Father: {fileID: 1279982005}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5056,6 +5192,7 @@ MonoBehaviour:
   - {fileID: 814406619}
   - {fileID: 145806543}
   activeMonster: {fileID: 0}
+  targetPosition: 3
 --- !u!33 &1002098315
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5090,6 +5227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
   dieClip: {fileID: 7400008, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
+  monsterType: 1
 --- !u!65 &1004587383
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5146,6 +5284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
   dieClip: {fileID: 7400008, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
+  monsterType: 0
 --- !u!111 &1010808077
 Animation:
   m_ObjectHideFlags: 0
@@ -5202,6 +5341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
   dieClip: {fileID: 7400008, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
+  monsterType: 0
 --- !u!111 &1016858515
 Animation:
   m_ObjectHideFlags: 0
@@ -5333,6 +5473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: e607f74860c67814e93c914b710142d5, type: 3}
   dieClip: {fileID: 7400006, guid: e607f74860c67814e93c914b710142d5, type: 3}
+  monsterType: 3
 --- !u!111 &1028932118
 Animation:
   m_ObjectHideFlags: 0
@@ -5738,6 +5879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
   dieClip: {fileID: 7400008, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
+  monsterType: 1
 --- !u!1001 &1188579560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5839,6 +5981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: e607f74860c67814e93c914b710142d5, type: 3}
   dieClip: {fileID: 7400006, guid: e607f74860c67814e93c914b710142d5, type: 3}
+  monsterType: 3
 --- !u!111 &1192364327
 Animation:
   m_ObjectHideFlags: 0
@@ -5947,7 +6090,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1192809983}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1251090139}
+        m_MethodName: LoadGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1192809983
@@ -6327,6 +6481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
   dieClip: {fileID: 7400008, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
+  monsterType: 1
 --- !u!65 &1227085789
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6383,6 +6538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
   dieClip: {fileID: 7400008, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
+  monsterType: 1
 --- !u!65 &1237135738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6496,6 +6652,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1251090140}
   - component: {fileID: 1251090139}
+  - component: {fileID: 1251090141}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6541,6 +6698,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1251090141
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251090138}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1d76c38c21e4e464bb4d01ebce62f124, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1279982000
 GameObject:
   m_ObjectHideFlags: 0
@@ -6575,8 +6828,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootNumText: {fileID: 1480111643}
   scoreText: {fileID: 1591154080}
+  messageText: {fileID: 2112617460}
   shootNum: 0
   score: 0
+  musicToggle: {fileID: 564399677}
+  musicAudio: {fileID: 1251090141}
 --- !u!114 &1279982002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6685,6 +6941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
   dieClip: {fileID: 7400008, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
+  monsterType: 0
 --- !u!111 &1300595803
 Animation:
   m_ObjectHideFlags: 0
@@ -6814,6 +7071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
   dieClip: {fileID: 7400008, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
+  monsterType: 2
 --- !u!65 &1317973998
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7018,6 +7276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: e607f74860c67814e93c914b710142d5, type: 3}
   dieClip: {fileID: 7400006, guid: e607f74860c67814e93c914b710142d5, type: 3}
+  monsterType: 3
 --- !u!111 &1403165932
 Animation:
   m_ObjectHideFlags: 0
@@ -7074,6 +7333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: e607f74860c67814e93c914b710142d5, type: 3}
   dieClip: {fileID: 7400006, guid: e607f74860c67814e93c914b710142d5, type: 3}
+  monsterType: 3
 --- !u!111 &1424616003
 Animation:
   m_ObjectHideFlags: 0
@@ -7221,6 +7481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
   dieClip: {fileID: 7400008, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
+  monsterType: 1
 --- !u!65 &1443492785
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7437,6 +7698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
   dieClip: {fileID: 7400008, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
+  monsterType: 1
 --- !u!65 &1505159837
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7566,6 +7828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
   dieClip: {fileID: 7400008, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
+  monsterType: 0
 --- !u!111 &1531672381
 Animation:
   m_ObjectHideFlags: 0
@@ -7622,6 +7885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
   dieClip: {fileID: 7400008, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
+  monsterType: 2
 --- !u!65 &1532040575
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7813,6 +8077,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1625144857}
+  - component: {fileID: 1625144858}
   m_Layer: 0
   m_Name: Targets
   m_TagString: Untagged
@@ -7843,6 +8108,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1625144858
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625144856}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a9646a6173bb6ad4b951ea60adaaa407, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1633526592
 GameObject:
   m_ObjectHideFlags: 0
@@ -7909,6 +8270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
   dieClip: {fileID: 7400008, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
+  monsterType: 0
 --- !u!111 &1638433604
 Animation:
   m_ObjectHideFlags: 0
@@ -8343,6 +8705,7 @@ MonoBehaviour:
   - {fileID: 1955713388}
   - {fileID: 1192364324}
   activeMonster: {fileID: 0}
+  targetPosition: 1
 --- !u!33 &1721661874
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8405,6 +8768,7 @@ MonoBehaviour:
   - {fileID: 2119454632}
   - {fileID: 1403165929}
   activeMonster: {fileID: 0}
+  targetPosition: 4
 --- !u!33 &1732545322
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8505,6 +8869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
   dieClip: {fileID: 7400008, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
+  monsterType: 1
 --- !u!65 &1738470911
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8939,6 +9304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
   dieClip: {fileID: 7400008, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
+  monsterType: 2
 --- !u!1 &1955713388 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013767804016, guid: c334a7c41936e764391ae93ab0e1981d,
@@ -8965,6 +9331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
   dieClip: {fileID: 7400008, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
+  monsterType: 2
 --- !u!65 &1955713391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9102,6 +9469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
   dieClip: {fileID: 7400008, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
+  monsterType: 0
 --- !u!111 &1967063454
 Animation:
   m_ObjectHideFlags: 0
@@ -9239,6 +9607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
   dieClip: {fileID: 7400008, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
+  monsterType: 0
 --- !u!111 &1983948920
 Animation:
   m_ObjectHideFlags: 0
@@ -9376,6 +9745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: e607f74860c67814e93c914b710142d5, type: 3}
   dieClip: {fileID: 7400006, guid: e607f74860c67814e93c914b710142d5, type: 3}
+  monsterType: 3
 --- !u!111 &2002136772
 Animation:
   m_ObjectHideFlags: 0
@@ -9505,6 +9875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
   dieClip: {fileID: 7400008, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
+  monsterType: 1
 --- !u!65 &2083180273
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9535,6 +9906,85 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!1 &2112617458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2112617459}
+  - component: {fileID: 2112617461}
+  - component: {fileID: 2112617460}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2112617459
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112617458}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1000274176}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000061035, y: 350}
+  m_SizeDelta: {x: 221.3, y: 76.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2112617460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112617458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: ec40b601107f6ac4ab99814eb9585431, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &2112617461
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112617458}
+  m_CullTransparentMesh: 0
 --- !u!1 &2119454632 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013767804016, guid: c334a7c41936e764391ae93ab0e1981d,
@@ -9561,6 +10011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleClip: {fileID: 7400000, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
   dieClip: {fileID: 7400008, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
+  monsterType: 2
 --- !u!65 &2119454635
 BoxCollider:
   m_ObjectHideFlags: 0
