@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using LitJson;
+using System.Xml;
 
 public class GameManager : MonoBehaviour
 {
@@ -116,6 +118,7 @@ public class GameManager : MonoBehaviour
             //关闭
             fileStream.Close();
             SetGame(save);
+            UIManager._instance.showMessage("");
         }
         else
         {
@@ -126,23 +129,135 @@ public class GameManager : MonoBehaviour
 
     private void SaveByXML()
     {
+        Save save = CreateSaveGO();
+        //创建xml文件的存储路径
+        string filePath = Application.dataPath + "/StreamingFile" + "/byXML.txt";
+        //创建一个xml文档
+        XmlDocument xmlDoc = new XmlDocument();
+        //创建根节点，即最上层节点
+        XmlElement root = xmlDoc.CreateElement("save");
+        //设置根节点中的值
+        root.SetAttribute("name", "saveFile1");
+        //创建XmlElement
+        XmlElement target;
+        XmlElement targetPosition;
+        XmlElement monsterType;
+        //遍历save中存储的数据，将数据转换成XML格式
+        for(int i = 0; i < save.livingTargetPosition.Count; i++)
+        {
+            target = xmlDoc.CreateElement("target");
 
+            targetPosition = xmlDoc.CreateElement("targetPosition");
+            targetPosition.InnerText = save.livingTargetPosition[i].ToString();
+
+            monsterType = xmlDoc.CreateElement("monsterType");
+            monsterType.InnerText = save.livingMonsterTypes[i].ToString();
+
+            //设置节点之间的层级关系root -> target -> (targetPosition,monsterType)
+            target.AppendChild(targetPosition);
+            target.AppendChild(monsterType);
+            root.AppendChild(target);
+        }
+        //设置射击数和分数节点并设置层级关系 xmlDoc -> root -> (target,shootNum,score)
+        XmlElement shootNum = xmlDoc.CreateElement("shootNum");
+        shootNum.InnerText = save.shootNum.ToString();
+        root.AppendChild(shootNum);
+
+        XmlElement score = xmlDoc.CreateElement("score");
+        score.InnerText = save.score.ToString();
+        root.AppendChild(score);
+
+        xmlDoc.AppendChild(root);
+        xmlDoc.Save(filePath);
+        if(File.Exists(filePath))
+        {
+            UIManager._instance.showMessage("保存成功");
+        }
     }
 
     private void LoadByXML()
     {
+        string filePath = Application.dataPath + "/StreamingFile" + "/byXML.txt";
+        if (File.Exists(filePath))
+        {
+            Save save = new Save();
+            //加载XML文档
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(filePath);
+            //通过节点名称来获取元素，结果为xmlNodeList类型
+            XmlNodeList targets = xmlDoc.GetElementsByTagName("target");
+            
+            //遍历所有的target节点，并获得子节点和子节点的innerText
+            if(targets.Count != 0)
+            {
+                foreach(XmlNode target in targets)
+                {
+                    XmlNode targetPosition = target.ChildNodes[0];
+                    int targetPositionIndex = int.Parse(targetPosition.InnerText);
+                    //把得到的值存储到save中
+                    save.livingTargetPosition.Add(targetPositionIndex);
+                    XmlNode monsterType = target.ChildNodes[1];
+                    int monsterTypeIndex = int.Parse(monsterType.InnerText);
+                    save.livingMonsterTypes.Add(monsterTypeIndex);
+                }
+            }
+            //用List来接收，得到存储的射击数和分数
+            //XmlNodeList shootNum = xmlDoc.GetElementsByTagName("shootNum");
+            //int shootNumCount = int.Parse(shootNum[0].InnerText);
+            //save.shootNum = shootNumCount;
+            XmlNode shootNum1 = xmlDoc.SelectSingleNode("shootNum");
+            int shootNumCount1 = int.Parse(shootNum1.InnerText);
+            save.shootNum = shootNumCount1;
 
+            XmlNodeList score = xmlDoc.GetElementsByTagName("score");
+            int scoreCount = int.Parse(score[0].InnerText);
+            save.score = scoreCount;
+            SetGame(save);
+            UIManager._instance.showMessage("");
+        }
+        else
+        {
+            UIManager._instance.showMessage("存档文件不存在");
+        }
     }
 
 
     private void SaveByJSon()
     {
-
+        Save save = CreateSaveGO();
+        string filePath = Application.dataPath + "/StreamingFile" + "/byJson.json";
+        //利用JsonMapper将Save对象转化为json格式的字符串
+        string saveJsonStr = JsonMapper.ToJson(save);
+        //将该字符串写入文件中
+        //创建一个StreamWritter,执行上一行注释
+        StreamWriter streamWriter = new StreamWriter(filePath);
+        streamWriter.Write(saveJsonStr);
+        //关闭stringWritter
+        streamWriter.Close();
+        UIManager._instance.showMessage("保存成功");
     }
 
     private void LoadByJSon()
     {
+        string filePath = Application.dataPath + "/StreamingFile" + "/byJson.json";
+        if(File.Exists(filePath))
+        {
+            //创建一个SteamReader,用来读取文件流
+            StreamReader streamReader = new StreamReader(filePath);
+            //将读取到的流赋值给jsonStr
+            string jsonStr = streamReader.ReadToEnd();
+            streamReader.Close();
 
+            //将字符串jsonStr转化为Save对象
+            Save save = JsonMapper.ToObject<Save>(jsonStr);
+            SetGame(save);
+            UIManager._instance.showMessage("");
+
+        }
+        else
+        {
+            UIManager._instance.showMessage("存档文件不存在");
+        }
     }
 
 
@@ -172,12 +287,15 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
-        SaveByBin();
+        //SaveByBin();
+        //SaveByJSon();
+        SaveByXML();
     }
 
     public void LoadGame()
     {
-        LoadByBin();
-        UIManager._instance.showMessage("");
+        //LoadByBin();
+        //LoadByJSon();
+        LoadByXML();
     }
 }
