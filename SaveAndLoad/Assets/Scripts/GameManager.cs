@@ -202,12 +202,12 @@ public class GameManager : MonoBehaviour
                 }
             }
             //用List来接收，得到存储的射击数和分数
-            //XmlNodeList shootNum = xmlDoc.GetElementsByTagName("shootNum");
-            //int shootNumCount = int.Parse(shootNum[0].InnerText);
-            //save.shootNum = shootNumCount;
-            XmlNode shootNum1 = xmlDoc.SelectSingleNode("shootNum");
-            int shootNumCount1 = int.Parse(shootNum1.InnerText);
-            save.shootNum = shootNumCount1;
+            XmlNodeList shootNum = xmlDoc.GetElementsByTagName("shootNum");
+            int shootNumCount = int.Parse(shootNum[0].InnerText);
+            save.shootNum = shootNumCount;
+            //XmlNode shootNum1 = xmlDoc.SelectSingleNode("shootNum");
+            //int shootNumCount1 = int.Parse(shootNum1.InnerText);
+            //save.shootNum = shootNumCount1;
 
             XmlNodeList score = xmlDoc.GetElementsByTagName("score");
             int scoreCount = int.Parse(score[0].InnerText);
@@ -234,7 +234,10 @@ public class GameManager : MonoBehaviour
         streamWriter.Write(saveJsonStr);
         //关闭stringWritter
         streamWriter.Close();
-        UIManager._instance.showMessage("保存成功");
+        if (File.Exists(filePath))
+        {
+            UIManager._instance.showMessage("保存成功");
+        }
     }
 
     private void LoadByJSon()
@@ -288,14 +291,14 @@ public class GameManager : MonoBehaviour
     public void SaveGame()
     {
         //SaveByBin();
-        //SaveByJSon();
-        SaveByXML();
+        SaveByJSon();
+        //SaveByXML();
     }
 
     public void LoadGame()
     {
         //LoadByBin();
-        //LoadByJSon();
-        LoadByXML();
+        LoadByJSon();
+        //LoadByXML();
     }
 }
